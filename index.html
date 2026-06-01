@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>កម្មវិធីគណិតវិទ្យាថ្នាក់ជាន់ខ្ពស់ - លីមីត អាំងតេក្រាល ប្រូបាប អេលីប និងអនុគមន៍</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist@2.24.1/plotly.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Kantumruy Pro', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="text-gray-800 bg-slate-50 antialiased">
+
+    <header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-900 text-white py-6 px-6 shadow-xl sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
+                    📐 📊 គណិតវិទ្យាអន្តរកម្មកម្រិតខ្ពស់
+                </h1>
+                <p class="text-xs md:text-sm mt-1 text-slate-300 font-light">
+                    ប្រព័ន្ធសិក្សាស្វ័យរៀន៖ លីមីត អាំងតេក្រាល ប្រូបាប អេលីប និងអនុគមន៍ (ទម្រង់ 2D/3D រស់រវើក)
+                </p>
+            </div>
+            <div class="flex flex-wrap gap-2 justify-center text-xs">
+                <a href="#sec-limits" class="bg-blue-600/30 hover:bg-blue-600 text-blue-300 hover:text-white px-3 py-1.5 rounded-full transition font-medium border border-blue-500/30">ភាគ I: លីមីត</a>
+                <a href="#sec-integrals" class="bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white px-3 py-1.5 rounded-full transition font-medium border border-emerald-500/30">ភាគ II: អាំងតេក្រាល</a>
+                <a href="#sec-prob" class="bg-amber-600/30 hover:bg-amber-600 text-amber-300 hover:text-white px-3 py-1.5 rounded-full transition font-medium border border-amber-500/30">ភាគ III: ប្រូបាប</a>
+                <a href="#sec-ellipse" class="bg-purple-600/30 hover:bg-purple-600 text-purple-300 hover:text-white px-3 py-1.5 rounded-full transition font-medium border border-purple-500/30">ភាគ IV: អេលីប</a>
+                <a href="#sec-funcs" class="bg-rose-600/30 hover:bg-rose-600 text-rose-300 hover:text-white px-3 py-1.5 rounded-full transition font-medium border border-rose-500/30">ភាគ V: អនុគមន៍</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-10 space-y-16">
+
+        <section id="sec-limits" class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden transition-all hover:shadow-2xl">
+            <div class="bg-gradient-to-r from-blue-600 to-cyan-600 p-6 text-white flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl bg-white/20 p-2 rounded-xl">📉</span>
+                    <div>
+                        <h2 class="text-xl font-bold">ភាគ I: គណនាលីមីត និងការវិភាគចលនា</h2>
+                        <p class="text-xs text-blue-100 opacity-90">ដោះស្រាយទម្រង់មិនកំណត់ 0/0 និង អនន្ត/អនន្ត</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-5 space-y-6 max-h-[550px] overflow-y-auto pr-2 custom-scrollbar">
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded-md">លំហាត់ A</span>
+                        <div class="my-2 text-base font-semibold text-slate-800">$$A = \lim_{x \to -\frac{\pi}{2}} \frac{3 + 3\sin x}{\cos^2 x}$$</div>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            <b>របៀបបំប្លែងពីជួរទី១ ទៅជួរទី២៖</b> ទាញលេខ 3 ជាកត្តារួមនៅភាគយក បាន $3(1+\sin x)$។ ចំណែកភាគបែងប្រើរូបមន្តមាស $\cos^2 x = 1 - \sin^2 x = (1-\sin x)(1+\sin x)$ ដើម្បីសម្រួលតួបញ្ហាចោល។
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                        <span class="bg-cyan-100 text-cyan-800 text-xs font-bold px-2.5 py-1 rounded-md">លំហាត់ B</span>
+                        <div class="my-2 text-base font-semibold text-slate-800">$$B = \lim_{x \to 4} \frac{\sqrt{x} - 2}{x - 4}$$</div>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            <b>របៀបបំប្លែងពីជួរទី១ ទៅជួរទី២៖</b> បំបែកភាគបែង $x - 4$ ទៅជាផលគុណកត្តាដោយប្រើរាងតួឯកលក្ខណៈ $a^2 - b^2 = (\sqrt{x})^2 - 2^2 = (\sqrt{x}-2)(\sqrt{x}+2)$ រួចសម្រួលវាចោល។
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-2.5 py-1 rounded-md">លំហាត់ C</span>
+                        <div class="my-2 text-base font-semibold text-slate-800">$$C = \lim_{x \to +\infty} \frac{3 - x}{2x - 1}$$</div>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            <b>របៀបបំប្លែងពីជួរទី១ ទៅជួរទី២៖</b> ចាប់ដឺក្រេធំជាងគេ $x$ ជាកត្តារួមទាំងលើទាំងក្រោម រួចសម្រួល $x$ ចោល។ កាលណា $x \to \infty$ នោះតួ $\frac{1}{x} \to 0$។
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+                    <div class="bg-slate-100 p-2 rounded-xl flex justify-center gap-2">
+                        <button onclick="changeLimitTab('A')" id="btn-lim-A" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-semibold shadow-md transition-all">លំហាត់ A</button>
+                        <button onclick="changeLimitTab('B')" id="btn-lim-B" class="bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg text-xs font-semibold transition-all">លំហាត់ B</button>
+                        <button onclick="changeLimitTab('C')" id="btn-lim-C" class="bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg text-xs font-semibold transition-all">លំហាត់ C</button>
+                    </div>
+                    
+                    <div id="limit-interactive-plot" class="w-full h-[380px] bg-slate-50 rounded-2xl border border-slate-100 shadow-inner"></div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-2xl border border-blue-100 space-y-2">
+                        <div class="flex justify-between items-center text-xs text-blue-900 font-semibold">
+                            <span>🎛️ អូសដើម្បីមើលតម្លៃ $x$ ខិតជិត៖</span>
+                            <span id="limit-slider-val" class="bg-blue-200 px-2 py-0.5 rounded text-blue-950 font-mono">-1.50</span>
+                        </div>
+                        <input type="range" id="limit-slider" min="-3" max="0" step="0.02" value="-1.5" class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-blue-600" oninput="updateLimitInteractive()">
+                        <p class="text-[11px] text-blue-700 text-center italic">តម្លៃលទ្ធផលគណនាស្វ័យប្រវត្តតាមចលនាដៃ៖ <span id="limit-calc-res" class="font-bold font-mono">1.50</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="sec-integrals" class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden transition-all hover:shadow-2xl">
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-600 p-6 text-white flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl bg-white/20 p-2 rounded-xl">📊</span>
+                    <div>
+                        <h2 class="text-xl font-bold">ភាគ II: គណនាអាំងតេក្រាលកំណត់ និងផ្ទៃក្រឡា</h2>
+                        <p class="text-xs text-emerald-100 opacity-90">ស្វែងរកអនុគមន៍ដើម (ព្រីមីទីវ) និងការគណនាចន្លោះព្រំដែន $[a, b]$</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-7 order-2 lg:order-1 flex flex-col justify-between space-y-4">
+                    <div class="bg-slate-100 p-2 rounded-xl flex justify-center gap-2">
+                        <button onclick="changeIntTab('I')" id="btn-int-I" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-semibold shadow-md">លំហាត់ I</button>
+                        <button onclick="changeIntTab('J')" id="btn-int-J" class="bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg text-xs font-semibold">លំហាត់ J</button>
+                        <button onclick="changeIntTab('K')" id="btn-int-K" class="bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg text-xs font-semibold">លំហាត់ K</button>
+                    </div>
+                    <div id="integral-interactive-plot" class="w-full h-[380px] bg-slate-50 rounded-2xl border border-slate-100 shadow-inner"></div>
+                </div>
+
+                <div class="lg:col-span-5 order-1 lg:order-2 space-y-6 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                    <div class="bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100/60">
+                        <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-md">លំហាត់ I</span>
+                        <div class="my-2 text-sm font-semibold">$$I = \int_{0}^{1} (x^2 - x + 2) dx = \left[ \frac{x^3}{3} - \frac{x^2}{2} + 2x \right]_{0}^{1} = \frac{11}{6}$$</div>
+                        <p class="text-xs text-gray-600 leading-relaxed">បន្ទាប់ពីការបូកបង្រួមកត្តារួចរាល់ យើងទាញរកអនុគមន៍ដើមតាមរូបមន្តស្វ័យគុណ $\int x^n dx = \frac{x^{n+1}}{n+1}$ រួចជំនួសព្រំដែនលើដកព្រំដែនក្រោម។</p>
+                    </div>
+
+                    <div class="bg-teal-50/50 p-4 rounded-2xl border border-teal-100/60">
+                        <span class="bg-teal-100 text-teal-800 text-xs font-bold px-2.5 py-1 rounded-md">លំហាត់ J</span>
+                        <div class="my-2 text-sm font-semibold">$$J = \int_{2}^{3} \left( \frac{1}{x-1} + \frac{1}{x^2} \right) dx = \left[ \ln|x-1| - \frac{1}{x} \right]_{2}^{3} = \ln 2 + \frac{1}{6}$$</div>
+                        <p class="text-xs text-gray-600 leading-relaxed">អនុគមន៍ដើមនៃ $\frac{1}{x-1}$ គឺ $\ln|x-1|$ ហើយតួ $\frac{1}{x^2} = x^{-2}$ នាំឱ្យអនុគមន៍ដើមរបស់វាគឺ $\frac{x^{-1}}{-1} = -\frac{1}{x}$។</p>
+                    </div>
+
+                    <div class="bg-cyan-50/50 p-4 rounded-2xl border border-cyan-100/60">
+                        <span class="bg-cyan-100 text-cyan-800 text-xs font-bold px-2.5 py-1 rounded-md">លំហាត់ K</span>
+                        <div class="my-2 text-sm font-semibold">$$K = \int_{0}^{\ln 2} (2e^{2x} + 3e^x) dx = \left[ e^{2x} + 3e^x \right]_{0}^{\ln 2} = 6$$</div>
+                        <p class="text-xs text-gray-600 leading-relaxed">ដោយសារអនុគមន៍ដើមនៃ $e^{ax}$ គឺ $\frac{1}{a}e^{ax}$ ដូចនេះ $2e^{2x}$ ខ្លាយជា $2 \cdot \frac{1}{2}e^{2x} = e^{2x}$។ ពេលជំនួស $\ln 2$ ចូលយើងសម្រួលតាមលក្ខណៈអិចស្ប៉ូណង់ស្យែល។</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="sec-prob" class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden transition-all hover:shadow-2xl">
+            <div class="bg-gradient-to-r from-amber-500 to-orange-600 p-6 text-white flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl bg-white/20 p-2 rounded-xl">🎲</span>
+                    <div>
+                        <h2 class="text-xl font-bold">ភាគ III: ការវិភាគប្រូបាប និងគំរូស្ថិតិ</h2>
+                        <p class="text-xs text-amber-100 opacity-90">ការទាញយកកន្សោមករណីអាច $C(n, r)$ និងករណីស្រប</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="bg-amber-50 p-5 rounded-2xl border border-amber-100 space-y-3">
+                        <h3 class="text-sm font-bold text-amber-900">📦 លក្ខខណ្ឌបម្រាប់ប្រធានលំហាត់៖</h3>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div class="bg-white p-3 rounded-xl shadow-sm text-center">
+                                <span class="block font-bold text-lg text-amber-600">4 ក្បាល</span>
+                                🐟 ត្រីមានស្រកា
+                            </div>
+                            <div class="bg-white p-3 rounded-xl shadow-sm text-center">
+                                <span class="block font-bold text-lg text-slate-600">6 ក្បាល</span>
+                                🐡 ត្រីអត់ស្រកា
+                            </div>
+                        </div>
+                        <div class="bg-amber-600 text-white text-center py-2 rounded-xl font-semibold text-xs shadow-sm">
+                            🎯 ចាប់ព្រមគ្នា 3 ក្បាល ⇒ ករណីអាច៖ $C(10,3) = 120$ របៀប
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs space-y-2">
+                        <p>🟢 <b>ព្រឹត្តិការណ៍ A (ត្រីស្រកាទាំង 3):</b> រើសត្រីស្រកា 3 ពីក្នុងចំណោម 4 នាំឱ្យបាន $C(4,3) = 4$ របៀប។ ប្រូបាបគឺ $P(A) = \frac{4}{120} = \frac{1}{30} \approx 0.0333$</p>
+                        <p>🔵 <b>ព្រឹត្តិការណ៍ B (អត់ស្រកា 2 និងស្រកា 1):</b> រើសត្រីបាន $C(6,2) \times C(4,1) = 15 \times 4 = 60$ របៀប។ ប្រូបាបគឺ $P(B) = \frac{60}{120} = \frac{1}{2} = 0.50$</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div id="probability-advanced-plot" class="w-full h-[320px] bg-slate-50 rounded-2xl border border-slate-100"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="sec-ellipse" class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden transition-all hover:shadow-2xl">
+            <div class="bg-gradient-to-r from-purple-600 to-indigo-600 p-6 text-white flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl bg-white/20 p-2 rounded-xl">📐</span>
+                    <div>
+                        <h2 class="text-xl font-bold">ភាគ IV: សមីការនិងក្រាហ្វិកអេលីប 2D/3D</h2>
+                        <p class="text-xs text-purple-100 opacity-90">បំប្លែងទៅជាសមីការស្តង់ដារ រកកំពូល និងកំណុំ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs md:text-sm grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100">
+                        <span class="font-bold text-purple-700">🔄 ការបំប្លែងសមីការ៖</span>
+                        <p class="mt-1 text-slate-600 text-xs leading-relaxed">ពី $12y^2 = 300 - 75x^2$ បោះតួ $x$ មកឆ្វេង រួចចែកនឹង 300 ទទួលបានទម្រង់ស្តង់ដារ៖ $$\frac{x^2}{2^2} + \frac{y^2}{5^2} = 1$$</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100">
+                        <span class="font-bold text-indigo-700">📐 ធាតុសំខាន់ៗ៖</span>
+                        <ul class="list-disc pl-4 mt-1 text-xs text-slate-600 space-y-1">
+                            <li>ពាក់កណ្តាលអ័ក្សធំ៖ $a = 5$ (ឈរ)</li>
+                            <li>ពាក់កណ្តាលអ័ក្សតូច៖ $b = 2$ (ដេក)</li>
+                            <li>ចម្ងាយផ្ចិតទៅកំណុំ៖ $c = \sqrt{25-4} = \sqrt{21}$</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100">
+                        <span class="font-bold text-blue-700">📍 កូអរដោនេ៖</span>
+                        <ul class="list-disc pl-4 mt-1 text-xs text-slate-600 space-y-1">
+                            <li>កំពូល៖ $V_1(0,5), V_2(0,-5)$</li>
+                            <li>កំណុំ៖ $F_1(0,\sqrt{21}), F_2(0,-\sqrt{21})$</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex justify-center gap-2">
+                        <button onclick="toggleEllipseDim('2D')" id="btn-el-2d" class="bg-purple-600 text-white px-5 py-2 rounded-xl text-xs font-bold shadow-md transition-all">មើលប្លង់ 2D</button>
+                        <button onclick="toggleEllipseDim('3D')" id="btn-el-3d" class="bg-white text-slate-700 hover:bg-slate-200 px-5 py-2 rounded-xl text-xs font-bold transition-all">មើលលំហ 3D (ស៊ីឡាំង)</button>
+                    </div>
+                    <div id="ellipse-interactive-plot" class="w-full h-[450px] bg-slate-50 rounded-2xl border border-slate-100 shadow-inner"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="sec-funcs" class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden transition-all hover:shadow-2xl">
+            <div class="bg-gradient-to-r from-rose-600 to-pink-600 p-6 text-white flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl bg-white/20 p-2 rounded-xl">📈</span>
+                    <div>
+                        <h2 class="text-xl font-bold">ភាគ V: សិក្សាអនុគមន៍សនិទាន និងអាស៊ីមតូត</h2>
+                        <p class="text-xs text-rose-100 opacity-90">ដែនកំណត់ អាស៊ីមតូតឈរ $x=1$ និងអាស៊ីមតូតទ្រេត $y=x+1$</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-8">
+                    <div id="function-advanced-plot" class="w-full h-[450px] bg-slate-50 rounded-2xl border border-slate-100"></div>
+                </div>
+
+                <div class="lg:col-span-4 space-y-4 text-xs">
+                    <div class="bg-rose-50 p-4 rounded-2xl border border-rose-100 space-y-2">
+                        <h4 class="font-bold text-rose-900 text-sm">🔍 ដែនកំណត់ និងការបំបែក៖</h4>
+                        <p class="text-slate-700">ដែនកំណត់៖ $D = \mathbb{R} \setminus \{1\}$ ព្រោះភាគបែង $1-x \neq 0$។</p>
+                        <p class="text-slate-700">ការបំប្លែងរកអាស៊ីមតូតទ្រេត តាមរយៈការតម្រូវភាគបែងឡើងវិញ៖</p>
+                        <div class="bg-white p-2 rounded-lg font-mono text-[11px] border text-center">
+                            x + 1 + 3/(1-x) = (4 - x²)/(1-x)
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                        <h4 class="font-bold text-slate-800 text-sm">💡 គន្លឹះគូរក្រាហ្វិក៖</h4>
+                        <p class="text-gray-600 leading-relaxed">ខ្សែោងស្អិតជាប់ត្រង់ $x=1$ ត្រូវបានកាត់ផ្តាច់ចេញជាពីរចំណែក (Left & Right branches) ដោយសារតម្លៃលីមីតខិតជិតត្រង់ $1^-$ ស្មើ $+\infty$ ហើយត្រង់ $1^+$ ស្មើ $-\infty$។ បន្ទាត់ពណ៌ប្រផេះដាច់ៗគឺជាខ្សែអាស៊ីមតូតទ្រេតដែលក្រាហ្វិកដេញតាមមិនចេះទើស។</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 text-center py-8 text-xs border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p class="font-medium text-slate-300">📱 កម្មវិធីត្រូវបានបង្កើនល្បឿន និងប្រើបច្ចេកវិទ្យា Hardware Acceleration ដើរលូនឥតខ្ចោះលើ Safari (iOS) និង Chrome (Android)</p>
+            <p>© 2026 ជំនួយការស្វ័យសិក្សាគណិតវិទ្យាអន្តរកម្ម។ រក្សាសិទ្ធិគ្រប់យ៉ាង។</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- សកល៖ កំណត់អថេរ Tab បច្ចុប្បន្ន ---
+        let currentLimitTab = 'A';
+        let currentIntTab = 'I';
+        let currentEllipseDim = '2D';
+
+        // ==================== ភាគ I: JAVASCRIPT FOR LIMITS ====================
+        function changeLimitTab(tab) {
+            currentLimitTab = tab;
+            ['A', 'B', 'C'].forEach(t => {
+                const btn = document.getElementById(`btn-lim-${t}`);
+                if (t === tab) {
+                    btn.className = "bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-semibold shadow-md transition-all";
+                } else {
+                    btn.className = "bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg text-xs font-semibold transition-all";
+                }
+            });
+
+            // កែសម្រួល Slider តាមប្រភេទលំហាត់
+            const slider = document.getElementById('limit-slider');
+            if (tab === 'A') { slider.min = "-3"; slider.max = "0"; slider.value = "-1.57"; }
+            else if (tab === 'B') { slider.min = "0"; slider.max = "10"; slider.value = "4"; }
+            else if (tab === 'C') { slider.min = "1"; slider.max = "500"; slider.value = "50"; }
+
+            updateLimitInteractive();
+        }
+
+        function updateLimitInteractive() {
+            const slider = document.getElementById('limit-slider');
+            const valSpan = document.getElementById('limit-slider-val');
+            const calcSpan = document.getElementById('limit-calc-res');
+            let inputVal = parseFloat(slider.value);
+
+            let xData = [], yData = [];
+            let titleText = '';
+            let targetX = 0, targetY = 0;
+
+            if (currentLimitTab === 'A') {
+                valSpan.innerText = inputVal.toFixed(2) + " rad";
+                titleText = 'លំហាត់ A: f(x) = (3 + 3sin x) / cos² x';
+                for (let t = -3.14; t <= 0; t += 0.02) {
+                    if (Math.abs(t - (-Math.PI/2)) > 0.02) {
+                        xData.push(t);
+                        yData.push((3 + 3 * Math.sin(t)) / (Math.cos(t) ** 2));
+                    }
+                }
+                targetX = inputVal;
+                targetY = (Math.abs(inputVal - (-Math.PI/2)) < 0.05) ? 1.5 : (3 + 3*Math.sin(inputVal)) / (Math.cos(inputVal)**2);
+                calcSpan.innerText = targetY.toFixed(3);
+            } 
+            else if (currentLimitTab === 'B') {
+                valSpan.innerText = "x = " + inputVal.toFixed(2);
+                titleText = 'លំហាត់ B: f(x) = (√x - 2) / (x - 4)';
+                for (let t = 0; t <= 10; t += 0.1) {
+                    if (t !== 4) {
+                        xData.push(t);
+                        yData.push((Math.sqrt(t) - 2) / (t - 4));
+                    }
+                }
+                targetX = inputVal;
+                targetY = (Math.abs(inputVal - 4) < 0.1) ? 0.25 : (Math.sqrt(inputVal) - 2) / (inputVal - 4);
+                calcSpan.innerText = targetY.toFixed(3);
+            } 
+            else if (currentLimitTab === 'C') {
+                valSpan.innerText = "x = " + parseInt(inputVal);
+                titleText = 'លំហាត់ C: f(x) = (3 - x) / (2x - 1)';
+                for (let t = 1; t <= 500; t += 5) {
+                    xData.push(t);
+                    yData.push((3 - t) / (2 * t - 1));
+                }
+                targetX = inputVal;
+                targetY = (3 - inputVal) / (2 * inputVal - 1);
+                calcSpan.innerText = targetY.toFixed(4) + " (ខិតជិត -0.5)";
+            }
+
+            let traceMain = { x: xData, y: yData, mode: 'lines', name: 'ខ្សែោងអនុគមន៍', line: {color: '#2563eb', width: 3} };
+            let tracePoint = { x: [targetX], y: [targetY], mode: 'markers', name: 'ចំណុចចល័ត', marker: {color: '#dc2626', size: 12, symbol: 'cross'} };
+
+            let layout = {
+                title: { text: titleText, font: { size: 14, family: 'Kantumruy Pro' } },
+                margin: { t: 40, b: 40, l: 40, r: 20 },
+                xaxis: { gridcolor: '#f1f5f9' },
+                yaxis: { gridcolor: '#f1f5f9' },
+                showlegend: false
+            };
+            Plotly.newPlot('limit-interactive-plot', [traceMain, tracePoint], layout, {responsive: true, displayModeBar: false});
+        }
+
+
+        // ==================== ភាគ II: JAVASCRIPT FOR INTEGRALS ====================
+        function changeIntTab(tab) {
+            currentIntTab = tab;
+            ['I', 'J', 'K'].forEach(t => {
+                const btn = document.getElementById(`btn-int-${t}`);
+                btn.className = (t === tab) ? "bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-semibold shadow-md" : "bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg text-xs font-semibold";
+            });
+            updateIntegralPlot();
+        }
+
+        function updateIntegralPlot() {
+            let xVal = [], yVal = [], xShade = [], yShade = [];
+            let titleStr = '';
+            let colorStr = '#10b981';
+            let fillColor = 'rgba(16, 185, 129, 0.25)';
+
+            if (currentIntTab === 'I') {
+                titleStr = 'ផ្ទៃក្រឡាអាំងតេក្រាល I: f(x) = x² - x + 2 [ចន្លោះ 0 ទៅ 1]';
+                for (let t = -0.5; t <= 1.5; t += 0.05) {
+                    let y = t*t - t + 2;
+                    xVal.push(t); yVal.push(y);
+                    if (t >= 0 && t <= 1) { xShade.push(t); yShade.push(y); }
+                }
+            } 
+            else if (currentIntTab === 'J') {
+                titleStr = 'ផ្ទៃក្រឡាអាំងតេក្រាល J: f(x) = 1/(x-1) + 1/x² [ចន្លោះ 2 ទៅ 3]';
+                colorStr = '#0d9488';
+                fillColor = 'rgba(13, 148, 136, 0.25)';
+                for (let t = 1.4; t <= 3.6; t += 0.05) {
+                    let y = (1 / (t - 1)) + (1 / (t * t));
+                    xVal.push(t); yVal.push(y);
+                    if (t >= 2 && t <= 3) { xShade.push(t); yShade.push(y); }
+                }
+            } 
+            else if (currentIntTab === 'K') {
+                titleStr = 'ផ្ទៃក្រឡាអាំងតេក្រាល K: f(x) = 2e^{2x} + 3e^x [ចន្លោះ 0 ទៅ ln 2]';
+                colorStr = '#059669';
+                fillColor = 'rgba(5, 150, 105, 0.25)';
+                let ln2 = Math.log(2);
+                for (let t = -0.1; t <= ln2 + 0.1; t += 0.02) {
+                    let y = 2 * Math.exp(2*t) + 3 * Math.exp(t);
+                    xVal.push(t); yVal.push(y);
+                    if (t >= 0 && t <= ln2) { xShade.push(t); yShade.push(y); }
+                }
+            }
+
+            let traceLine = { x: xVal, y: yVal, mode: 'lines', line: {color: colorStr, width: 3}, name: 'អនុគមន៍ f(x)' };
+            let traceShade = { x: xShade, y: yShade, fill: 'tozeroy', type: 'scatter', mode: 'none', fillcolor: fillColor, name: 'ផ្ទៃក្រឡាគណនា' };
+
+            Plotly.newPlot('integral-interactive-plot', [traceLine, traceShade], {
+                title: { text: titleStr, font: {size: 13, family: 'Kantumruy Pro'} },
+                margin: { t: 40, b: 40, l: 40, r: 20 },
+                xaxis: { gridcolor: '#f1f5f9' }, yaxis: { gridcolor: '#f1f5f9' }
+            }, {responsive: true, displayModeBar: false});
+        }
+
+
+        // ==================== ភាគ III: JAVASCRIPT FOR PROBABILITY ====================
+        function initProbabilityPlot() {
+            let trace = {
+                x: ['ព្រឹត្តិការណ៍ A<br>(ត្រីស្រកាទាំង 3)', 'ព្រឹត្តិការណ៍ B<br>(ស្រកា1 អត់ស្រកា2)', 'ព្រឹត្តិការណ៍ផ្សេងៗទៀត'],
+                y: [4/120, 60/120, 56/120],
+                type: 'bar',
+                marker: {
+                    color: ['#f59e0b', '#d97706', '#cbd5e1'],
+                    line: { color: '#78350f', width: 1.5 }
+                }
+            };
+            let layout = {
+                title: { text: 'ការប្រៀបធៀបដ្យាក្រាមប្រូបាបលទ្ធផល', font: {size: 14, family: 'Kantumruy Pro'} },
+                margin: { t: 50, b: 50, l: 40, r: 20 },
+                yaxis: { title: 'តម្លៃប្រូបាប P(X)', range: [0, 0.6], gridcolor: '#f1f5f9' }
+            };
+            Plotly.newPlot('probability-advanced-plot', [trace], layout, {responsive: true, displayModeBar: false});
+        }
+
+
+        // ==================== ភាគ IV: JAVASCRIPT FOR ELLIPSE 2D/3D ====================
+        function toggleEllipseDim(dim) {
+            currentEllipseDim = dim;
+            const btn2d = document.getElementById('btn-el-2d');
+            const btn3d = document.getElementById('btn-el-3d');
+            
+            if (dim === '2D') {
+                btn2d.className = "bg-purple-600 text-white px-5 py-2 rounded-xl text-xs font-bold shadow-md transition-all";
+                btn3d.className = "bg-white text-slate-700 hover:bg-slate-200 px-5 py-2 rounded-xl text-xs font-bold transition-all";
+                renderEllipse2D();
+            } else {
+                btn3d.className = "bg-purple-600 text-white px-5 py-2 rounded-xl text-xs font-bold shadow-md transition-all";
+                btn2d.className = "bg-white text-slate-700 hover:bg-slate-200 px-5 py-2 rounded-xl text-xs font-bold transition-all";
+                renderEllipse3D();
+            }
+        }
+
+        function renderEllipse2D() {
+            let x = [], y = [];
+            for (let i = 0; i <= 100; i++) {
+                let t = (i / 100) * 2 * Math.PI;
+                x.push(2 * Math.cos(t));
+                y.push(5 * Math.sin(t));
+            }
+            let traceEllipse = { x: x, y: y, mode: 'lines', name: 'ខ្សែអេលីប', line: {color: '#7c3aed', width: 3} };
+            let traceFoci = { x: [0, 0], y: [Math.sqrt(21), -Math.sqrt(21)], mode: 'markers', name: 'កំណុំ F1, F2', marker: {color: '#e11d48', size: 10, symbol: 'diamond'} };
+
+            Plotly.newPlot('ellipse-interactive-plot', [traceEllipse, traceFoci], {
+                title: { text: 'គំនូរតាងអេលីប 2D ក្នុងប្លង់កូអរដោនេ', font: {family: 'Kantumruy Pro'} },
+                xaxis: { range: [-6, 6], gridcolor: '#f1f5f9' },
+                yaxis: { range: [-6, 6], gridcolor: '#f1f5f9' },
+                margin: { t: 40, b: 40, l: 40, r: 40 }
+            }, {responsive: true});
+        }
+
+        function renderEllipse3D() {
+            let x = [], y = [], z = [];
+            for (let i = 0; i <= 60; i++) {
+                let t = (i / 60) * 2 * Math.PI;
+                for (let h = -6; h <= 6; h += 1.5) {
+                    x.push(2 * Math.cos(t));
+                    y.push(5 * Math.sin(t));
+                    z.push(h);
+                }
+            }
+            let trace3D = {
+                x: x, y: y, z: z, mode: 'markers',
+                marker: { size: 3, color: z, colorscale: 'Viridis', opacity: 0.8 },
+                type: 'scatter3d'
+            };
+            Plotly.newPlot('ellipse-interactive-plot', [trace3D], {
+                title: { text: 'ទម្រង់លំហស៊ីឡាំងអេលីប 3D (ប្រើម្រាមដៃអូសបង្វិលបាន)', font: {family: 'Kantumruy Pro', size: 13} },
+                margin: { t: 40, b: 10, l: 10, r: 10 }
+            }, {responsive: true});
+        }
+
+
+        // ==================== ភាគ V: JAVASCRIPT FOR FUNCTION STUDY ====================
+        function renderAdvancedFunction() {
+            let x1 = [], y1 = [], x2 = [], y2 = [];
+            
+            // ផ្នែកទី១ ខាងឆ្វេងអាស៊ីមតូតឈរ x < 1
+            for (let x = -10; x < 0.93; x += 0.05) {
+                x1.push(x); y1.push((4 - x*x) / (1 - x));
+            }
+            // ផ្នែកទី២ ខាងស្តាំអាស៊ីមតូតឈរ x > 1
+            for (let x = 1.07; x <= 12; x += 0.05) {
+                x2.push(x); y2.push((4 - x*x) / (1 - x));
+            }
+
+            let trace1 = { x: x1, y: y1, mode: 'lines', name: 'f(x) ខាងឆ្វេង', line: {color: '#e11d48', width: 3} };
+            let trace2 = { x: x2, y: y2, mode: 'lines', name: 'f(x) ខាងស្តាំ', line: {color: '#e11d48', width: 3}, showlegend: false };
+            
+            // អាស៊ីមតូតទ្រេត y = x + 1
+            let traceAsympTret = { x: [-10, 12], y: [-9, 13], mode: 'lines', name: 'អាស៊ីមតូតទ្រេត y = x + 1', line: {color: '#64748b', dash: 'dash', width: 2} };
+
+            Plotly.newPlot('function-advanced-plot', [trace1, trace2, traceAsympTret], {
+                title: { text: 'ក្រាហ្វិកខ្សែោងប្រកបដោយអាស៊ីមតូតផ្តាច់', font: {family: 'Kantumruy Pro'} },
+                xaxis: { range: [-6, 8], gridcolor: '#f1f5f9' },
+                yaxis: { range: [-10, 15], gridcolor: '#f1f5f9' },
+                margin: { t: 40, b: 40, l: 40, r: 20 }
+            }, {responsive: true});
+        }
+
+
+        // --- រត់មុខងារទាំងអស់ពេលចងក្រងចប់ ---
+        window.onload = function() {
+            changeLimitTab('A');
+            updateIntegralPlot();
+            initProbabilityPlot();
+            renderEllipse2D();
+            renderAdvancedFunction();
+        };
+    </script>
+</body>
+</html>
